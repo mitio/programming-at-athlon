@@ -11,6 +11,10 @@
 - http://fmi.ruby.bg/lectures/02-arrays-hashes-functions#1
 - http://ruby-doc.org/docs/Newcomers/ruby.html (Внимание - някои неща от този линк са остарели.)
 
+Днес стигнахме до тук:
+
+- http://fmi.ruby.bg/lectures/01-introduction-to-ruby#15
+
 ### 2. Ресурси за домашно (из ["15 Things for a Ruby Beginner"](http://www.jasimabasheer.com/posts/meta_introduction_to_ruby.html)):
 
 - http://rubymonk.com/
