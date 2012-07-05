@@ -34,11 +34,13 @@
 е елемент от масива, а ключът е оценката (върнатата стойност) на анонимната функция, извикана с аргумент
 въпросния елемент:
 
-	['John Coltrane', 'Miles Davis'].index_by(lambda { |name| name.split(' ').last })
-	# Очакван резултат: {'Coltrane' => 'John Coltrane', 'Davis' => 'Miles Davis' }
+```Ruby
+['John Coltrane', 'Miles Davis'].index_by(lambda { |name| name.split(' ').last })
+# Очакван резултат: {'Coltrane' => 'John Coltrane', 'Davis' => 'Miles Davis' }
 
-	%w[foo larodi bar].index_by(lambda { |s| s.length })
-	# Очакван резултат: {3 => 'bar', 6 => 'larodi'}
+%w[foo larodi bar].index_by(lambda { |s| s.length })
+# Очакван резултат: {3 => 'bar', 6 => 'larodi'}
+```
 
 Ако анонимната функция оценява няколко елемента с една и съща стойност, ползвайте последнния елемент
 като финална стойност за дадения ключ.
@@ -50,20 +52,22 @@
 на въпросния обект. Например, ако искате всички обекти от клас `Array` да имат метод `dasherize`
 (по конвенция в текст това се изписва така: `Array#dasherize`), може да ползвате следния код:
 
-	class Array
-	  def dasherize
-	    self.join('-')
-	  end
-	end
+```Ruby
+class Array
+  def dasherize
+    self.join('-')
+  end
+end
 
-	[1, 2, 3].dasherize
-	# Очакван резултат: "1-2-3"
+[1, 2, 3].dasherize
+# Очакван резултат: "1-2-3"
 
-	['foo', :bar].dasherize
-	# Очакван резултат: "foo-bar"
+['foo', :bar].dasherize
+# Очакван резултат: "foo-bar"
 
-	Array.new.dasherize
-	# Очакван резултат: ""
+Array.new.dasherize
+# Очакван резултат: ""
+```
 
 Забележете, че може да ползвате `self`, за да се обръщате към "текущия" обект. `self` е специално име
 на променлива, което винаги сочи към обекта, в чиито "контекст се намирате в момента. Пробвайте го —
