@@ -60,10 +60,12 @@
 
 Знаем, че всички песни на Колтрейн имат саксофон, а пък Бах пише полифонична музика за пиано. Затова, освен този текстов низ, имаме и следния речник:
 
-	{
-	  'John Coltrane' => ['saxophone'],
-	  'Bach' => ['piano', 'polyphony'],
-	}
+```Ruby
+{
+  'John Coltrane' => ['saxophone'],
+  'Bach' => ['piano', 'polyphony'],
+}
+```
 
 Горното казва, че всички песни на Колтрейн трябва да имат етикет `saxophone`, а всички на Бах – етикети `piano` и `polyphony`.
 
@@ -73,7 +75,9 @@
 
 Първо трябва да напишете метод със следната сигнатура:
 
-	collection = collection_from_string(songs_as_string, artist_tags)
+```Ruby
+collection = collection_from_string(songs_as_string, artist_tags)
+```
 
 * Първият аргумент `songs_as_string` е текстов низ, съдържащ каталог с песни в показания по-горе формат.
 * Вторият е речник, съпоставящ име на артист (низ) с етикети (списък от низове), които всички негови песни трябва да имат, както беше обяснено по-горе.
@@ -81,63 +85,71 @@
 
 Следващата ви задача е да напишете метод `find_in_collection`, имащ следния вид:
 
-	songs = find_in_collection(collection, criteria)
+```Ruby
+songs = find_in_collection(collection, criteria)
+```
 
 * Първият му аргумент е резултатът от `collection_from_string`, т.е. вече обработената музикална колекция, намираща се в удобен за вашата вътрешна употреба формат. Вторият аргумент на метода — `criteria` — е хеш, който ще задава критерии, по които да филтрирате песните от музикалната колекция. Методът `find_in_collection` трябва да връща списък от хешове, като всеки върнат хеш трябва да отговаря на една песен (ще ги наричаме *хеш-песен*).
 
 Всеки хеш-песен трябва да има следните ключове (ако предположим, че променливата `song` сочи към такъв хеш-песен):
 
-	# Пример за следната песен:
-	# My Favourite Things.    John Coltrane.      Jazz, Bebop.        popular
-	song[:name]     # => "My Favourite Things"
-	song[:artist]   # => "John Coltrane"
-	song[:genre]    # => "Jazz"
-	song[:subgenre] # => "Bebop"
-	song[:tags]     # => ['popular', 'jazz', 'bebop', 'saxophone']
+```Ruby
+# Пример за следната песен:
+# My Favourite Things.    John Coltrane.      Jazz, Bebop.        popular
+song[:name]     # => "My Favourite Things"
+song[:artist]   # => "John Coltrane"
+song[:genre]    # => "Jazz"
+song[:subgenre] # => "Bebop"
+song[:tags]     # => ['popular', 'jazz', 'bebop', 'saxophone']
 
-	# Пример за следната песен:
-	# Eine Kleine Nachtmusik. Mozart.             Classical.          popular
-	song[:name]     # => "Eine Kleine Nachtmusik"
-	song[:artist]   # => "Mozart"
-	song[:genre]    # => "Classical"
-	song[:subgenre] # => nil
-	song[:tags]     # => ['classical', 'popular']
+# Пример за следната песен:
+# Eine Kleine Nachtmusik. Mozart.             Classical.          popular
+song[:name]     # => "Eine Kleine Nachtmusik"
+song[:artist]   # => "Mozart"
+song[:genre]    # => "Classical"
+song[:subgenre] # => nil
+song[:tags]     # => ['classical', 'popular']
+```
 
 Няколко примера как трябва да работи `find_in_collection`, ако предположим, че в променливата `collection` стои резултата от предишно извикване на `collection_from_string(…)`:
 
-	# Намира всички песни с етикет jazz:
-	find_in_collection(collection, {tags: 'jazz'})
+```Ruby
+# Намира всички песни с етикет jazz:
+find_in_collection(collection, {tags: 'jazz'})
 
-	# Намира всички песни, които имат двата етикета jazz и piano:
-	find_in_collection(collection, {tags: ['jazz', 'piano']})
+# Намира всички песни, които имат двата етикета jazz и piano:
+find_in_collection(collection, {tags: ['jazz', 'piano']})
 
-	# Намира всички песни, които имат етикет jazz и нямат етикет piano:
-	find_in_collection(collection, {tags: ['jazz', 'piano!']})
+# Намира всички песни, които имат етикет jazz и нямат етикет piano:
+find_in_collection(collection, {tags: ['jazz', 'piano!']})
 
-	# Намира всички популярни песни на Джон Колтрейн:
-	find_in_collection(collection, {tags: 'popular', artist: 'John Coltrane'})
+# Намира всички популярни песни на Джон Колтрейн:
+find_in_collection(collection, {tags: 'popular', artist: 'John Coltrane'})
 
-	# Връща имена на песни, които започват с думичката "My":
-	find_in_collection(collection, {filter: ->(song) { song.name.start_with?('My') }})
+# Връща имена на песни, които започват с думичката "My":
+find_in_collection(collection, {filter: ->(song) { song.name.start_with?('My') }})
+```
 
 Както споменахме, очакваме върнатият резултат да е списък от хеш-песни (с посочените по-горе ключове). Разбира се, ако няма съвпадения, отговарящи на поисканите критерии, ще връщате празен списък. Например, валиден резултат, съдържащ две песни и върнат от `find_in_collection`, е следното (форматирано в четим вид):
 
-	[
-		{
-			name: "Eine Kleine Nachtmusik",
-			artist: "Mozart",
-			genre: "Classical",
-			subgenre: nil,
-			tags: ['classical', 'popular'],
-		},
-		{
-			name: "My Favourite Things",
-			artist: "John Coltrane",
-			genre: "Jazz",
-			subgenre: "Bebop",
-			tags: ['popular', 'jazz', 'bebop', 'saxophone'],
-		},
-	]
+```Ruby
+[
+	{
+		name: "Eine Kleine Nachtmusik",
+		artist: "Mozart",
+		genre: "Classical",
+		subgenre: nil,
+		tags: ['classical', 'popular'],
+	},
+	{
+		name: "My Favourite Things",
+		artist: "John Coltrane",
+		genre: "Jazz",
+		subgenre: "Bebop",
+		tags: ['popular', 'jazz', 'bebop', 'saxophone'],
+	},
+]
+```
 
 ## Спецификацията
 
