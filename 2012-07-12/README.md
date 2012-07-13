@@ -127,7 +127,7 @@ find_in_collection(collection, {tags: ['jazz', 'piano!']})
 find_in_collection(collection, {tags: 'popular', artist: 'John Coltrane'})
 
 # Връща имена на песни, които започват с думичката "My":
-find_in_collection(collection, {filter: ->(song) { song.name.start_with?('My') }})
+find_in_collection(collection, {filter: ->(song) { song[:name].start_with?('My') }})
 ```
 
 Както споменахме, очакваме върнатият резултат да е списък от хеш-песни (с посочените по-горе ключове). Разбира се, ако няма съвпадения, отговарящи на поисканите критерии, ще връщате празен списък. Например, валиден резултат, съдържащ две песни и върнат от `find_in_collection`, е следното (форматирано в четим вид):
