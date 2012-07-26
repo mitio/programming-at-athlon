@@ -22,6 +22,7 @@ describe 'collection_from_string' do
       Waltz for Debbie.             Bill Evans.         Jazz
       'Round Midnight.              Thelonious Monk.    Jazz, Bebop
       Ruby, My Dear.                Thelonious Monk.    Jazz.               saxophone
+      Hey!.                         Thelonious Monk.    Jazz.               saxophone
       Fur Elise.                    Beethoven.          Classical.          popular
       Moonlight Sonata.             Beethoven.          Classical.          popular
       Pathetique.                   Beethoven.          Classical
@@ -41,8 +42,17 @@ describe 'collection_from_string' do
     songs(artist: 'Bill Evans').map { |song_hash| song_hash[:name] }.should =~ ['Autumn Leaves', 'Waltz for Debbie']
   end
 
+  it "doens't modify collection" do
+    songs(artist: 'Bill Evans').map { |song_hash| song_hash[:name] }.should =~ ['Autumn Leaves', 'Waltz for Debbie']
+    songs({}).should have(input.lines.count).items
+  end
+
   it "can look up songs by name" do
     songs(name: "'Round Midnight").map { |song_hash| song_hash[:artist] }.should =~ ['John Coltrane', 'Thelonious Monk']
+  end
+
+  it "song names can end in an exclamation mark" do
+    songs(name: "Hey!").map { |song_hash| song_hash[:artist] }.should =~ ['Thelonious Monk']
   end
 
   it "uses the genre and subgenre as tags" do
@@ -54,7 +64,7 @@ describe 'collection_from_string' do
   end
 
   it "can find songs by multiple tags" do
-    songs(tags: %w[popular violin]).map { |song_hash| song_hash[:name] }.should eq ['Eine Kleine Nachtmusik']
+    songs(tags: %w[violin popular]).map { |song_hash| song_hash[:name] }.should eq ['Eine Kleine Nachtmusik']
   end
 
   it "can find songs that don't have a tag" do
