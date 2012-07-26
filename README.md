@@ -6,4 +6,4 @@ A small and experimental programming course which takes place at Athlon Sofia. T
 - homework assignments
 - solutions and unit tests for the assignments
 
-The course is taught by @mitio and shares some resources from [fmi.ruby.bg](http://fmi.ruby.bg).
+The course is taught by [me](http://ddimitrov.name) and shares some resources from [fmi.ruby.bg](http://fmi.ruby.bg).
