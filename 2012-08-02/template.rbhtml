@@ -1,0 +1,12 @@
+html do
+  head do
+    title 'Hey, HTML is fun again!'
+  end
+  body do
+    article do
+      a href: 'http://google.com' do
+        img src: 'https://www.google.bg/logos/2012/table_tennis-2012-hp.jpg'
+      end
+    end
+  end
+end
